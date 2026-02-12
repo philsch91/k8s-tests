@@ -1,0 +1,13 @@
+{{- if .Values.pdb.enabled -}}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  {{/* annotations: */}}
+  labels: {{- include "k8s-tests.labels" . | nindent 4 }}
+  name: {{ include "addSuffix" (dict "value" (include "k8s-tests.fullname" .) "suffix" "-pdb") }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      {{- include "k8s-tests.selectorLabels" . | nindent 6 }}
+{{- end }}

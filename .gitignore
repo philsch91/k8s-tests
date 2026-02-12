@@ -1,0 +1,24 @@
+# .gitignore k8s-tests
+
+## Files
+*.zip
+*.tar.gz
+*.tar
+*.tgz
+*.bak
+*.swp
+*.swo
+*.DS_Store
+*.local
+
+### Helm files
+### prevent inclusion of files created and dependencies downloaded via 'helm dependency update'
+*.tgz
+Chart.lock
+
+## IDE
+.idea/
+.vscode/
+
+## Eclipse
+.project
