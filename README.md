@@ -1,5 +1,16 @@
 # k8s-tests
 
+## Test
+```
+helm template k8s-tests . --values values.yaml --debug
+```
+
+## Install and Upgrade
+```
+helm -n default upgrade -i k8s-tests . --create-namespace --values values.yaml --wait --dry-run="server" --debug
+helm -n default upgrade -i k8s-tests . --create-namespace --values values.yaml --timeout=15m --atomic --debug
+```
+
 ## Pod Topology Spread Constraints
 
 ### Deployment.v1.apps
@@ -12,6 +23,8 @@ spec.topologySpreadConstraints.labelSelector -> spec.template.metadata.labels
 
 ### Test
 ```
+helm test <...> # todo
+
 # scale deployment
 k -n default scale deployment/k8s-test-k8s-tests --replicas=<number-of-replicas>
 deployment.apps/k8s-test-k8s-tests scaled
